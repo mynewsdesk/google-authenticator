@@ -159,6 +159,22 @@ describe GoogleAuthenticatorRails do
       end
     end
 
-  end
+    context "STI records" do
+      let(:options) { { :email => "test@example.com", :user_name => "test_user" } }
 
+      context "parents" do
+        let(:user) { STIRootUser.create options }
+        subject { user.google_authentic?(922511) }
+
+        it { should be true }
+      end
+
+      context "children" do
+        let(:user) { STIChildUser.create options }
+        subject { user.google_authentic?(922511) }
+
+        it { should be true }
+      end
+    end
+  end
 end

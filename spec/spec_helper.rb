@@ -71,6 +71,18 @@ ActiveRecord::Schema.define do
 
     t.timestamps
   end
+
+  create_table :sti_users, force: true do |t|
+    t.string :google_secret
+    t.string :email
+    t.string :user_name
+    t.string :password
+    t.string :persistence_token
+    t.string :salt
+    t.string :type
+
+    t.timestamps
+  end
 end
 
 class BaseUser < ActiveRecord::Base
@@ -131,4 +143,12 @@ end
 
 class QrCodeUser < BaseUser
   acts_as_google_authenticated :qr_size => '300x300', :method => :email
+end
+
+class STIRootUser < ActiveRecord::Base
+  self.table_name = "sti_users"
+  acts_as_google_authenticated
+end
+
+class STIChildUser < STIRootUser
 end
