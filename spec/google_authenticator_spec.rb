@@ -148,7 +148,7 @@ describe GoogleAuthenticatorRails do
 
       context 'qr size passed to method' do
         subject { user.google_qr_uri('400x400') }
-        let(:user) { StringUser.create options }  
+        let(:user) { StringUser.create options }
         it { should eq "https://chart.googleapis.com/chart?cht=qr&chl=otpauth%3A%2F%2Ftotp%2Ftest%40example.com%3Fsecret%3D5qlcip7azyjuwm36&chs=400x400" }
       end
 
