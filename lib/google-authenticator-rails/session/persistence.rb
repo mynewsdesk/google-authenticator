@@ -26,7 +26,7 @@ module GoogleAuthenticatorRails
       end
 
       def create(user)
-        raise GoogleAuthenticatorRails::Session::Persistence::TokenNotFound if user.nil? || !user.respond_to?(user.class.google_lookup_token) || user.google_token_value.blank?
+        raise GoogleAuthenticatorRails::Session::Persistence::TokenNotFound if user.nil? || !user.respond_to?(user.google_lookup_token_field) || user.google_token_value.blank?
         controller.cookies[cookie_key] = create_cookie(user.google_token_value, user.id)
         new(user)
       end

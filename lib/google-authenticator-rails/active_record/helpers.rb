@@ -30,6 +30,10 @@ module GoogleAuthenticatorRails # :nodoc:
         self.__send__(inclusion_class.google_lookup_token)
       end
 
+      def google_lookup_token_field
+        inclusion_class.google_lookup_token
+      end
+
       private
       def default_google_label_method
         self.__send__(inclusion_class.google_label_column)
